@@ -40,3 +40,8 @@ def register_user(request):
     else:
         form = RegisterUserForm(request.POST)
     return render(request, 'authenticate/register_user.html', {'form':form})
+
+
+def user_profile(request):
+    context = {'user': request.user}
+    return render(request, 'authenticate/profile.html', context)

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="card">
+          <h5 class="card-header">User Profile</h5>
+          <div class="card-body">
+              <h5 class="card-title">Username: {{ user }}</h5>
+              <h5 class="card-title">Email: {{ user.email }}</h5>
+          </div>
+        </div>
+    {% else %}
+        <p>Login to view your profile page.</p>
+    {% endif %}
+{% endblock %}
