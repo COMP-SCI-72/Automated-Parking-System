@@ -7,11 +7,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {% endif %}
-<p>Register</p>
+<div class="shadow p-4 mb-5 bg-body rounded">
+    <p>Register</p>
 
-<form action="{% url 'register_user' %}" METHOD="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p><button type="submit" class="btn btn-primary">Submit</button></p>
-</form>
+    <form action="{% url 'register_user' %}" METHOD="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><button type="submit" class="btn btn-primary">Submit</button></p>
+    </form>
+</div>
+
 {% endblock %}
