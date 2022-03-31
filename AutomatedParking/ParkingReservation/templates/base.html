@@ -34,42 +34,38 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'home' %}"><span class="ms-2">Home</span> </a>
             </li>
-          </ul>
-          <ul class="navbar-nav d-flex flex-row ms-auto me-3">
-              {% if user.is_authenticated %}
-                  <li class="nav-item me-3 me-lg-0 dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
-                        aria-expanded="false">
-                        <img src="{% static '/images/profile.png' %}" class="rounded-circle" height="22"
-                          alt="" loading="lazy" />
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
-                        <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
-                        <li>
-                          <hr class="dropdown-divider" />
-                        </li>
-                      </ul>
-                  </li>
-              {% else %}
-                  <li class="nav-item">
+            {% if user.is_authenticated %}
+                <li class="nav-item"> <a href="{% url 'reservations' %}" class="nav-link text-white"><span class="ms-2">My Reservations</span> </a> </li>
+                <li class="nav-item"> <a href="#" class="nav-link text-white"></i><span class="ms-2">Reserve a spot</span> </a> </li>
+                <li class="nav-item"> <a href="#" class="nav-link text-white"></i><span class="ms-2">My Orders</span> </a> </li>
+            {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li><a class="nav-link text-white" href="{% url 'profile' %}">Profile</a></li>
+                    <li><a class="nav-link text-white" href="{% url 'logout' %}">Sign out</a></li>
+                {% else %}
+                    <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'register_user' %}">Register</a>
-                  </li>
-                  <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                     <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-                  </li>
-              {% endif %}
-
-
+                    </li>
+                {% endif %}
+            </ul>
           </ul>
         </div>
       </div>
     </nav>
 
-    <div class="container-fluid">
-      {% block content %}{% endblock %}
+<div class="container">
+    <div class=" mt-5">
+        <div class="col">
+            {% block content %} {% endblock %}
+        </div>
     </div>
 
+</div>
 
     <!-- Scripts -->
     <script src="{% static '/js/bootstrap.min.js' %}"></script> <!-- Bootstrap framework -->

@@ -12,18 +12,6 @@
         </div>
     {% endfor %}
 {% endif %}
-{% if user.is_authenticated %}
-<div class="d-flex flex-column vh-100 flex-shrink-0 p-3 bg-dark" style="width: 250px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none"> <svg class="bi me-2" width="40" height="32"> </svg> </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li> <a href="#" class="nav-link"><span class="ms-2">Dashboard</span> </a> </li>
-        <li> <a href="#" class="nav-link"></i><span class="ms-2">Reserve a spot</span> </a> </li>
-        <li> <a href="#" class="nav-link"></i><span class="ms-2">My Orders</span> </a> </li>
-    </ul>
-    <hr>
 
-</div>
-{% endif %}
 {% endblock %}
 </html>

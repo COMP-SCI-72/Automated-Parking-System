@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if user.is_authenticated %}
+    {% if reservations %}
+        <div class="card-deck">
+            {% for rsrv in reservations %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ rsrv.user.first_name }} {{ rsrv.user.last_name }}</h5>
+                        <p class="card-text">Vehicle: {{ rsrv.car }}</p>
+                        <p class="card-text">Parking: {{ rsrv.parking }}</p>
+                        <p class="card-text">Paid: {{ rsrv.price }}</p>
+                        <p class="card-text"><small class="text-muted">Reservation made on: {{ rsrv.date }}</small></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Currently there are no reservations!</h5>
+                    </div>
+                </div>
+        </div>
+    {% endif %}
+
+{% endif %}
+{% endblock %}
+</html>
