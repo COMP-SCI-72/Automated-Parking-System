@@ -17,6 +17,7 @@ class Parking(models.Model):
 
 
 class Car(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     make = models.CharField('Make', max_length=150)
     model = models.CharField('Model', max_length=150)
     year = models.IntegerField()
@@ -27,7 +28,7 @@ class Car(models.Model):
 
 
 class Reservation(models.Model):
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, blank=False, on_delete=models.CASCADE)
     price = models.IntegerField()
