@@ -31,6 +31,7 @@ Colors:
 ******************************************/
 
 
+
 /**************************/
 /*     General Styles     */
 /**************************/
@@ -295,6 +296,31 @@ a:hover {
 	background-color: transparent;
 	color: #4555d2;
 }
+
+.jumbotron {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    position: relative;
+}
+
+.jumbotron .hero-textbox {
+    position: absolute;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 0.5;
+}
+
+.jumbotron .hero-textbox h1,
+.jumbotron .hero-textbox h2,
+.jumbotron .hero-textbox h3,
+.jumbotron .hero-textbox h4,
+.jumbotron .hero-textbox p {
+    color: white;
+}
+
 
 
 /**********************/

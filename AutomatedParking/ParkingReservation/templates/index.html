@@ -3,7 +3,20 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'base.html' %}
+{% block hero %}
+{% load static %}
+<div class="jumbotron shadow-sm" style="background-image: url('{% static 'images/hero.jpg' %}')">
+    <div class="col-lg-4 p-3 p-lg-5 pt-lg-3 hero-textbox rounded-3 shadow-sm">
+        <h1>Automated Parking System</h1>
+        <p>This is the hero image for the main page</p><p>This box will resize with the window</p>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
+{% load static %}
+
+<div class="container mt-5">
 {% if messages %}
     {% for message in messages %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -12,6 +25,7 @@
         </div>
     {% endfor %}
 {% endif %}
+</div>
 
 {% endblock %}
 </html>

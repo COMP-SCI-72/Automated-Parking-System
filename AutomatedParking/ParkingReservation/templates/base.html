@@ -60,13 +60,14 @@
       </div>
     </nav>
 
-<div class="container">
+    {% block hero %} {% endblock %}
+
+    <div class="container">
     <div class=" mt-5">
         <div class="col">
             {% block content %} {% endblock %}
         </div>
     </div>
-
 </div>
 
     <!-- Scripts -->
