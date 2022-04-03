@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+{% if user.is_authenticated %}
+    {% if vehicles %}
+        <div class="card-deck">
+            {% for car in vehicles %}
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">Make: {{ car.make }}</p>
+                        <p class="card-text">Model: {{ car.model }}</p>
+                        <p class="card-text">Year: {{ car.year }}</p>
+                        <p class="card-text">License: {{ car.license }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Currently there are no cars!</h5>
+                    </div>
+                </div>
+        </div>
+    {% endif %}
+
+{% endif %}
+{% endblock %}
+</html>

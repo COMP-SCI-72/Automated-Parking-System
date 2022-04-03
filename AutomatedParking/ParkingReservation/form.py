@@ -4,13 +4,14 @@ from .models import Reservation, Car
 
 
 class ReservationForm(ModelForm):
+
     class Meta:
         model = Reservation
-        fields = '__all__'
+        fields = ('car', 'parking')  #'__all__'
 
 
 class CarForm(ModelForm):
     class Meta:
         model = Car
-        fields = '__all__'
+        fields = ('make', 'model', 'year', 'license')
 
