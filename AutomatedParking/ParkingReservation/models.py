@@ -28,12 +28,17 @@ class Car(models.Model):
 
 
 class Reservation(models.Model):
-    date = models.DateTimeField(auto_now=True)
+    # added separate start date and end date
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+
+    # changed from date -> creation_date
+    creation_date = models.DateTimeField(auto_now=True)
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, blank=False, on_delete=models.CASCADE)
     price = models.IntegerField()
     parking = models.ForeignKey(Parking, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{} {} {}".format(self.user, self.date, self.price)
-
+        return "{} {} {}".format(self.user, self.creation_date, self.price)
