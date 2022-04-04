@@ -15,7 +15,7 @@ def user_reservations(request):
 
 def add_reservations(request):
     if request.method == "POST":
-        form = ReservationForm(request.POST)
+        form = ReservationForm(request.POST, user=request.user)
         if form.is_valid():
             obj = form.save(commit=False)
             obj.price = 555  # TODO: fix this ASAP! This price should come from parking object.
@@ -23,7 +23,7 @@ def add_reservations(request):
             obj.save()
             return HttpResponseRedirect('/reservations')
     else:
-        form = ReservationForm
+        form = ReservationForm(user=request.user)
     return render(request, 'add_reservation.html', {'form': form})
 
 
