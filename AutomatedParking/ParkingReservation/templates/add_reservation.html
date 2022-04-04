@@ -17,14 +17,45 @@
     {% else %}
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <form action="" method="POST">
+            <form action="" method="POST" autocomplete="off">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Reserve" class="btn btn-success">
             </form>
           </div>
         </div>
+    <script>
+    // Handles date selector ui elements
+      $( function() {
+        var dateFormat = "mm/dd/yy",
+          start = $( "#id_start_date" )
+            .datepicker({
+              defaultDate: "+1w",
+              changeMonth: true,
+              numberOfMonths: 1
+            }).on( "change", function() {
+              end.datepicker( "option", "minDate", getDate( this ) );
+            }),
+          end = $( "#id_end_date" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1
+          }).on( "change", function() {
+            start.datepicker( "option", "maxDate", getDate( this ));
+          });
 
+        function getDate( element ) {
+          var date;
+          try {
+            date = $.datepicker.parseDate( dateFormat, element.value );
+          } catch( error ) {
+            date = null;
+          }
+
+          return date;
+        }
+      });
+  </script>
     {% endif %}
 {% endif %}
 {% endblock %}
