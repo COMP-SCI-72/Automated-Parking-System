@@ -41,6 +41,15 @@ html {
 	height: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 auto;
+}
+
 body, p {
 	color: #6c717b; 
 	font: 400 1rem/1.625rem "Open Sans", sans-serif;
@@ -854,8 +863,7 @@ a:hover {
 /*     Footer     */
 /******************/
 .footer {
-	padding-top: 6.5rem;
-	padding-bottom: 2rem;
+
 }
 
 .footer a {

@@ -1,3 +1,4 @@
+
 {% load static %}
 <head>
     <meta charset="utf-8">
@@ -25,7 +26,7 @@
     <script src="{% static '/js/scripts.js' %}"></script> <!-- Custom scripts -->
 
     <!-- jQuery UI  -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css"> <!-- nonstatic lets us avoid downloading all the icons -->
     <script src="{% static '/js/jquery-ui.min.js' %}"></script>
 
 </head>
@@ -37,7 +38,7 @@
         <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
           data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
           aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
+          <i class="fas fa-bars" style="color: #ffffff"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -49,6 +50,7 @@
                 <li class="nav-item"> <a href="{% url 'vehicles' %}" class="nav-link text-white"><span class="ms-2">My Vehicles</span> </a> </li>
                 <li class="nav-item"> <a href="{% url 'add-reservations' %}" class="nav-link text-white"><span class="ms-2">Create Reservation</span> </a> </li>
                 <li class="nav-item"> <a href="{% url 'add-vehicle' %}" class="nav-link text-white"><span class="ms-2">Add a Vehicle</span> </a> </li>
+
             {% endif %}
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -69,14 +71,38 @@
       </div>
     </nav>
 
-    {% block hero %} {% endblock %}
+    <main>
+        {% block alert %} {% endblock %}
+        {% block hero %} {% endblock %}
 
-    <div class="container">
-    <div class=" mt-5">
-        <div class="col">
-            {% block content %} {% endblock %}
+        <div class="container">
+            <div class=" mt-5">
+                <div class="col">
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer class="bg-dark text-center footer p-2 mt-5">
+        <div class="container">
+
+            <!-- Section: Social media -->
+            <section class="mb-4">
+            <!-- Github -->
+                <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="https://github.com/COMP-SCI-72/Automated-Parking-System/" target="_blank" role="button"><i class="fab fa-github"></i></a>
+            </section>
+
+            <section class="mb-4">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+                    distinctio earum repellat quaerat voluptatibus placeat nam,
+                    commodi optio pariatur est quia magnam eum harum corrupti dicta,
+                    aliquam sequi voluptate quas.
+                </p>
+            </section>
+        </div>
+    </footer>
 </div>
 
 

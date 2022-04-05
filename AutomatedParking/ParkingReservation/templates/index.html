@@ -13,10 +13,9 @@
 </div>
 {% endblock %}
 
-{% block content %}
+{% block alert %}
 {% load static %}
-
-<div class="container mt-5">
+<div class="container">
 {% if messages %}
     {% for message in messages %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -27,5 +26,17 @@
 {% endif %}
 </div>
 
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <h2>Header 2</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Sunt distinctio earum repellat quaerat voluptatibus placeat nam,
+        commodi optio pariatur est quia magnam eum harum corrupti dicta,
+        aliquam sequi voluptate quas.</p>
+
+</div>
 {% endblock %}
 </html>
