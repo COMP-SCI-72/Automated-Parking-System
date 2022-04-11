@@ -31,6 +31,7 @@
           start = $( "#id_start_date" )
             .datepicker({
               defaultDate: "+1w",
+              minDate: "-0",
               changeMonth: true,
               numberOfMonths: 1
             }).on( "change", function() {
