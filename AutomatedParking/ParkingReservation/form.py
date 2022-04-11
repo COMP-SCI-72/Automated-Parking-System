@@ -10,10 +10,11 @@ class ReservationForm(ModelForm):
         model = Reservation
         fields = ('car', 'parking', 'start_date', 'end_date')
 
-    def __init__(self, user=None, **kwargs):
-        super(ReservationForm, self).__init__(**kwargs)
-        if user:
-            self.fields['car'].queryset = Car.objects.filter(user=user)
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user")
+        super(ReservationForm, self).__init__(*args, **kwargs)
+        if self.user:
+            self.fields['car'].queryset = Car.objects.filter(user=self.user)
 
 
 class CarForm(ModelForm):
