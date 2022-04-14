@@ -17,7 +17,7 @@
     {% else %}
         <div class="card" style="width: 18rem;">
           <div class="card-body">
-            <form action="" method="POST" autocomplete="off">
+            <form action="" method="POST" id="ReservationForm" autocomplete="off" data-parking-spots-url="{% url 'ajax_load_parking_spots' %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Reserve" class="btn btn-success">
@@ -56,6 +56,22 @@
           return date;
         }
       });
+
+        $("#id_parking").change(function () {
+            const url = $("#ReservationForm").attr("data-parking-spots-url");
+            const parkingId = $(this).val();
+
+            $.ajax({
+                url: url,
+                data: {
+                    'parking_id': parkingId
+                },
+                success: function (data) {
+                    $("#id_parking_spot").html(data);
+                }
+            });
+
+        });
   </script>
     {% endif %}
 {% endif %}

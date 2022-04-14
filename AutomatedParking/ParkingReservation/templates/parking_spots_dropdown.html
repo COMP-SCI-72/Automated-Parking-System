@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for parking_spot in parking_spots %}
+    <option value="{{ parking_spot.pk }}">{{ parking_spot }}</option>
+{% endfor %}
