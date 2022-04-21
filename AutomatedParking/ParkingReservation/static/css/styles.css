@@ -316,11 +316,13 @@ a:hover {
 
 .jumbotron .hero-textbox {
     position: absolute;
-    top: 50%;
-    transform: translate(10%, -50%);
+    top: 25%;
+    width:100%;
     background-color: rgba(0,0,0,0.4);
     border-radius: 0.5;
 }
+
+
 
 .jumbotron .hero-textbox h1,
 .jumbotron .hero-textbox h2,
@@ -1054,6 +1056,12 @@ a:hover {
 		margin-right: 2rem;
 		margin-left: 2rem;
 	}
+
+	.jumbotron .hero-textbox {
+        top: 50%;
+        width: auto;
+        transform: translate(10%, -50%);
+    }
 	/* end of services */
 
 
