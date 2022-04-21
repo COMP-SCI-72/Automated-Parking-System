@@ -22,6 +22,9 @@
                         <p class="card-text">Parking Spot: {{ rsrv.parking_spot.row }}{{ rsrv.parking_spot.col }}</p>
                         <p class="card-text">Paid: {{ rsrv.price }}</p>
                         <p class="card-text"><small class="text-muted">Reservation made on: {{ rsrv.creation_date }}</small></p>
+                        <button onclick="confirmThenRedirect('{% url 'remove-reservation' reservation_id=rsrv.id %}', 'Are you sure you want to cancel this reservation?')" class="btn btn-lg btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             {% endfor %}
