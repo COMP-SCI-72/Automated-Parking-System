@@ -121,7 +121,7 @@ function topFunction() {
 	document.documentElement.scrollTop = 0; // for Chrome, Firefox, IE and Opera
 }
 
-var confirmThenRedirect = function(redirect, prompt) {
+function confirmThenRedirect(redirect, prompt) {
     if(confirm(prompt)) {
         window.location.href=redirect
     }
