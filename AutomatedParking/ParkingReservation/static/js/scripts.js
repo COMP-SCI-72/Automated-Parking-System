@@ -9,28 +9,43 @@ window.onscroll = function () {
 
 window.onload = function () {
 	scrollFunction();
+	navbarMobile();
 };
 
 function scrollFunction() {
-	if (document.documentElement.scrollTop > 30) {
-		document.getElementById("navbar").classList.add("top-nav-collapse");
-	} else if ( document.documentElement.scrollTop < 30 ) {
-		document.getElementById("navbar").classList.remove("top-nav-collapse");
-	}
+    let nb = document.getElementById("navbar")
+    if(nb !== null) {
+        if (document.documentElement.scrollTop > 30) {
+            nb.classList.add("top-nav-collapse");
+        } else if ( document.documentElement.scrollTop < 30 ) {
+            nb.classList.remove("top-nav-collapse");
+        }
+    }
 }
 
 // Navbar on mobile
-let elements = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
+function navbarMobile() {
+    let elements = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
 
-for (let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 	elements[i].addEventListener("click", () => {
-		document.querySelector(".offcanvas-collapse").classList.toggle("open");
-	});
+	    document.querySelector(".offcanvas-collapse").classList.toggle("show");
+	    });
+    }
+
+	let toggleButton = document.querySelector(".navbar-toggler");
+	if(toggleButton !== null) {
+	    toggleButton.addEventListener("click", () => {document.querySelector(".navbar-collapse").classList.toggle("show");});
+	}
 }
 
-document.querySelector(".navbar-toggler").addEventListener("click", () => {
-  	document.querySelector(".offcanvas-collapse").classList.toggle("open");
-});
+
+let elements = document.querySelectorAll(".nav-link:not(.dropdown-toggle)");
+
+
+
+
+document.querySelector(".navbar-toggler")
 
 // Hover on desktop
 function toggleDropdown(e) {
@@ -52,7 +67,7 @@ function toggleDropdown(e) {
 // On hover
 const dropdownCheck = document.querySelector('.dropdown');
 
-if (dropdownCheck !== null) { 
+if (dropdownCheck !== null) {
 	document.querySelector(".dropdown").addEventListener("mouseleave", toggleDropdown);
 	document.querySelector(".dropdown").addEventListener("mouseover", toggleDropdown);
 
@@ -69,7 +84,7 @@ if (dropdownCheck !== null) {
 		}
 	});
 }
-  
+
 
 /* Card Slider - Swiper */
 var cardSlider = new Swiper('.card-slider', {
@@ -91,10 +106,12 @@ myButton = document.getElementById("myBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
 function scrollFunctionBTT() {
-	if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-		myButton.style.display = "block";
-	} else {
-		myButton.style.display = "none";
+    if(myButton !== null) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            myButton.style.display = "block";
+        } else {
+            myButton.style.display = "none";
+        }
 	}
 }
 
@@ -102,4 +119,10 @@ function scrollFunctionBTT() {
 function topFunction() {
 	document.body.scrollTop = 0; // for Safari
 	document.documentElement.scrollTop = 0; // for Chrome, Firefox, IE and Opera
+}
+
+var confirmThenRedirect = function(redirect, prompt) {
+    if(confirm(prompt)) {
+        window.location.href=redirect
+    }
 }

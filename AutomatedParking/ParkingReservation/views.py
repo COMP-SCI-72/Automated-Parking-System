@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Reservation, Car, Parking, ParkingSpot
 from .form import ReservationForm, CarForm
 from django.http import HttpResponseRedirect
@@ -31,6 +31,15 @@ def add_reservations(request):
     return render(request, 'add_reservation.html', {'form': form})
 
 
+def remove_reservation(request, reservation_id):
+    res = Reservation.objects.get(id=reservation_id)
+    spot = ParkingSpot.objects.get(id=res.parking_spot.id)
+    spot.occupied = False
+    spot.save()
+    res.delete()
+    return HttpResponseRedirect('/reservations')
+
+
 def add_vehicle(request):
     if request.method == "POST":
         form = CarForm(request.POST)
@@ -38,10 +47,18 @@ def add_vehicle(request):
             obj = form.save(commit=False)
             obj.user = request.user
             obj.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/vehicles')
     else:
         form = CarForm
     return render(request, 'add_car.html', {'form': form})
+
+
+def remove_vehicle(request, vehicle_id):
+    vehicle = Car.objects.get(id=vehicle_id)
+    vehicle.delete()
+    print("remove_vehicle " + str(vehicle_id))
+    return HttpResponseRedirect('/vehicles')
+
 
 
 def vehicles(request):

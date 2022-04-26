@@ -20,6 +20,9 @@
                         <p class="card-text">Model: {{ car.model }}</p>
                         <p class="card-text">Year: {{ car.year }}</p>
                         <p class="card-text">License: {{ car.license }}</p>
+                        <button onclick="confirmThenRedirect('{% url 'remove-vehicle' vehicle_id=car.id %}', 'Are you sure you want to remove this vehicle from your account?')" class="btn btn-lg btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             {% endfor %}
