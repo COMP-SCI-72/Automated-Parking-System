@@ -34,16 +34,6 @@ def add_reservations(request):
                 obj.save()
 
                 return HttpResponseRedirect('/reservations')
-        # if form.is_valid():
-        #     obj = form.save(commit=False)
-        #     obj.price = obj.parking_spot.cost_per_hour
-        #     obj.user = request.user
-        #     # Marking a parking spot a occupied.
-        #     parking_spot = ParkingSpot.objects.get(id=obj.parking_spot.id)
-        #     parking_spot.occupied = True
-        #     parking_spot.save()
-        #     obj.save()
-        #     return HttpResponseRedirect('/reservations')
             else:
                 messages.success(request, "There is no spot available in " + obj.parking.name + " for that time period.")
 
