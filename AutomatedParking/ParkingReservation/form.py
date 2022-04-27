@@ -10,6 +10,8 @@ class ReservationForm(ModelForm):
     start_time = forms.TimeField()
     end_time = forms.TimeField()
 
+    CUSTOM_TIME_FORMAT = '%I:%M %p'
+
     class Meta:
         model = Reservation
         fields = ('car', 'parking', 'start_date', 'end_date')
@@ -19,6 +21,11 @@ class ReservationForm(ModelForm):
         super(ReservationForm, self).__init__(*args, **kwargs)
         if self.user:
             self.fields['car'].queryset = Car.objects.filter(user=self.user)
+        # allow AM/PM time format
+        if self.CUSTOM_TIME_FORMAT not in self.fields['start_time'].input_formats:
+            self.fields['start_time'].input_formats.append(self.CUSTOM_TIME_FORMAT)
+        if self.CUSTOM_TIME_FORMAT not in self.fields['end_time'].input_formats:
+            self.fields['end_time'].input_formats.append(self.CUSTOM_TIME_FORMAT)
 
 
 class CarForm(ModelForm):

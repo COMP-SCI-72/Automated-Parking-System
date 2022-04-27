@@ -35,7 +35,7 @@
                     <label for="{{ form.start_date.id_for_label }}">Start date:</label>
                     {{ form.start_date }}
                 </div>
-                <div class="fieldWrapper">
+                <div class="fieldWrapper timepicker">
                     {{ form.start_time.errors }}
                     <label for="{{ form.start_time.id_for_label }}">Start time:</label>
                     {{ form.start_time }}
@@ -45,7 +45,7 @@
                     <label for="{{ form.end_date.id_for_label }}">End date:</label>
                     {{ form.end_date }}
                 </div>
-                <div class="fieldWrapper">
+                <div class="fieldWrapper timepicker">
                     {{ form.end_time.errors }}
                     <label for="{{ form.end_time.id_for_label }}">End time:</label>
                     {{ form.end_time }}
@@ -104,6 +104,20 @@
 
         });
   </script>
+
+<script>
+    $('.timepicker > input').timepicker({
+    timeFormat: 'h:mm p',
+    interval: 60,
+    minTime: '12:00am',
+    maxTime: '11:00pm',
+    defaultTime: '12:00pm',
+    startTime: '5:00am',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true
+});
+</script>
     {% endif %}
 {% endif %}
 {% endblock %}
