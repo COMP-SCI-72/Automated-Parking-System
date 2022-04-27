@@ -19,7 +19,38 @@
           <div class="card-body">
             <form action="" method="POST" id="ReservationForm" autocomplete="off" data-parking-spots-url="{% url 'ajax_load_parking_spots' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form.non_field_errors }}
+                <div class="fieldWrapper">
+                    {{ form.car.errors }}
+                    <label for="{{ form.car.id_for_label }}">Car:</label>
+                    {{ form.car }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.parking.errors }}
+                    <label for="{{ form.parking.id_for_label }}">Garage:</label>
+                    {{ form.parking }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.start_date.errors }}
+                    <label for="{{ form.start_date.id_for_label }}">Start date:</label>
+                    {{ form.start_date }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.start_time.errors }}
+                    <label for="{{ form.start_time.id_for_label }}">Start time:</label>
+                    {{ form.start_time }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.end_date.errors }}
+                    <label for="{{ form.end_date.id_for_label }}">End date:</label>
+                    {{ form.end_date }}
+                </div>
+                <div class="fieldWrapper">
+                    {{ form.end_time.errors }}
+                    <label for="{{ form.end_time.id_for_label }}">End time:</label>
+                    {{ form.end_time }}
+                </div>
+                <br />
                 <input type="submit" value="Reserve" class="btn btn-success">
             </form>
           </div>

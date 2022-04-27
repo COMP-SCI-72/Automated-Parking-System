@@ -19,8 +19,10 @@
                         <h5 class="card-title">{{ rsrv.user.first_name }} {{ rsrv.user.last_name }}</h5>
                         <p class="card-text">Vehicle: {{ rsrv.car }}</p>
                         <p class="card-text">Parking: {{ rsrv.parking }}</p>
-                        <p class="card-text">Parking Spot: {{ rsrv.parking_spot.row }}{{ rsrv.parking_spot.col }}</p>
-                        <p class="card-text">Paid: {{ rsrv.price }}</p>
+                        <p class="card-text">Parking Spot: {{ rsrv.parking_spot.row }}, {{ rsrv.parking_spot.col }}</p>
+                        <p class="card-text">Start: {{ rsrv.start_date }}</p>
+                        <p class="card-text">End: {{ rsrv.end_date }}</p>
+                        <p class="card-text">Price: {{ rsrv.price }}</p>
                         <p class="card-text"><small class="text-muted">Reservation made on: {{ rsrv.creation_date }}</small></p>
                         <button onclick="confirmThenRedirect('{% url 'remove-reservation' reservation_id=rsrv.id %}', 'Are you sure you want to cancel this reservation?')" class="btn btn-lg btn-danger">
                             <i class="fa fa-trash"></i>

@@ -1,7 +1,11 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 from .models import Reservation, Car, Parking, ParkingSpot
 from .form import ReservationForm, CarForm
+from .assigner import find_open_spot
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 def home(request):
@@ -18,14 +22,31 @@ def add_reservations(request):
         form = ReservationForm(request.POST, user=request.user)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.price = obj.parking_spot.cost_per_hour
-            obj.user = request.user
-            # Marking a parking spot a occupied.
-            parking_spot = ParkingSpot.objects.get(id=obj.parking_spot.id)
-            parking_spot.occupied = True
-            parking_spot.save()
-            obj.save()
-            return HttpResponseRedirect('/reservations')
+
+            obj.start_date = datetime.combine(form.cleaned_data['start_date'], form.cleaned_data['start_time'])
+            obj.end_date = datetime.combine(form.cleaned_data['end_date'], form.cleaned_data['end_time'])
+
+            spot = find_open_spot(obj)
+            if spot:
+                obj.parking_spot = spot
+                obj.price = obj.parking_spot.cost_per_hour
+                obj.user = request.user
+                obj.save()
+
+                return HttpResponseRedirect('/reservations')
+        # if form.is_valid():
+        #     obj = form.save(commit=False)
+        #     obj.price = obj.parking_spot.cost_per_hour
+        #     obj.user = request.user
+        #     # Marking a parking spot a occupied.
+        #     parking_spot = ParkingSpot.objects.get(id=obj.parking_spot.id)
+        #     parking_spot.occupied = True
+        #     parking_spot.save()
+        #     obj.save()
+        #     return HttpResponseRedirect('/reservations')
+            else:
+                messages.success(request, "There is no spot available in " + obj.parking.name + " for that time period.")
+
     else:
         form = ReservationForm(user=request.user)
     return render(request, 'add_reservation.html', {'form': form})
@@ -60,10 +81,9 @@ def remove_vehicle(request, vehicle_id):
     return HttpResponseRedirect('/vehicles')
 
 
-
 def vehicles(request):
-    vehicles = Car.objects.filter(user=request.user)
-    return render(request, 'vehicles.html', {"vehicles": vehicles})
+    v = Car.objects.filter(user=request.user)
+    return render(request, 'vehicles.html', {"vehicles": v})
 
 
 def load_parking_spots(request):
