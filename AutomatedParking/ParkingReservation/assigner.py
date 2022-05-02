@@ -5,8 +5,8 @@ from .models import Reservation, Parking, ParkingSpot
 
 def find_open_spot(res):
     garage = res.parking
-    start = pytz.utc.localize(res.start_date)
-    end = pytz.utc.localize(res.end_date)
+    start = res.start_date
+    end = res.end_date
 
     # get all reservations for the selected garage
     reservations = Reservation.objects.filter(parking=garage)

@@ -32,7 +32,7 @@ class ParkingSpot(models.Model):
     occupied = models.BooleanField(default=False)
 
     def __str__(self):
-        return "{}{}".format(self.row, self.col)
+        return "{}: Row {} Col {}".format(self.parking.name, self.row, self.col)
 
 
 class Reservation(models.Model):
@@ -50,5 +50,5 @@ class Reservation(models.Model):
     parking_spot = models.ForeignKey(ParkingSpot, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{} {} {}".format(self.user, self.creation_date, self.price)
+        return "{} | {} {}".format(self.user, self.creation_date, self.price)
 
