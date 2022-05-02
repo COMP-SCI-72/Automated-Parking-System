@@ -2,7 +2,6 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime
 import pytz
 from django.utils import timezone
-
 from .models import Reservation
 
 
