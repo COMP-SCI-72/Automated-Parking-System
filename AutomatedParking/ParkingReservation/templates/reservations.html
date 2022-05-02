@@ -16,6 +16,8 @@
             {% for rsrv in reservations %}
                 <div class="card">
                     <div class="card-body">
+                        {% load tz %}
+                        {% timezone "America/Chicago" %}
                         <h5 class="card-title">{{ rsrv.user.first_name }} {{ rsrv.user.last_name }}</h5>
                         <p class="card-text">Vehicle: {{ rsrv.car }}</p>
                         <p class="card-text">Parking: {{ rsrv.parking }}</p>
@@ -27,6 +29,7 @@
                         <button onclick="confirmThenRedirect('{% url 'remove-reservation' reservation_id=rsrv.id %}', 'Are you sure you want to cancel this reservation?')" class="btn btn-lg btn-danger">
                             <i class="fa fa-trash"></i>
                         </button>
+                        {% endtimezone %}
                     </div>
                 </div>
             {% endfor %}

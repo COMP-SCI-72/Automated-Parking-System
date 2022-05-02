@@ -6,6 +6,7 @@ from .form import ReservationForm, CarForm
 from .assigner import find_open_spot
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+import pytz
 
 
 def home(request):
@@ -23,8 +24,11 @@ def add_reservations(request):
         if form.is_valid():
             obj = form.save(commit=False)
 
-            obj.start_date = datetime.combine(form.cleaned_data['start_date'], form.cleaned_data['start_time'])
-            obj.end_date = datetime.combine(form.cleaned_data['end_date'], form.cleaned_data['end_time'])
+            local_tz = pytz.timezone("America/Chicago")
+            start = datetime.combine(form.cleaned_data['start_date'], form.cleaned_data['start_time'])
+            end = obj.end_date = datetime.combine(form.cleaned_data['end_date'], form.cleaned_data['end_time'])
+            obj.start_date = local_tz.localize(start).astimezone(pytz.utc)
+            obj.end_date = local_tz.localize(end).astimezone(pytz.utc)
 
             spot = find_open_spot(obj)
             if spot:
